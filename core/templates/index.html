@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="../../static/estilos/index_estilo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="cabecalho">
+        <img src='https://cdn-icons-png.flaticon.com/512/6807/6807210.png'></img>
+    </div>
+    <br>
+    <h1 style="font-size: 28px; font-weight: 700;">SISTEMA DE ESTOQUE DE TECIDOS</h1>
+    <br>
+    <h1>HISTÓRICO DE INPUTS
+        <a href="{% url 'abrir_estoque' %}" class="aba" style="text-decoration: none; color: black; font-size: 12px;">EXIBIR ESTOQUE</a>
+    </h1>
+    <hr style="margin-left:325px; margin-top: 0px; background: rgb(163, 161, 161); height: 1px;">
+    <br>
+    <a href="{% url 'adicionar' %}">
+        <button type="submit" id="botao_adicionar"><img src="https://cdn-icons-png.flaticon.com/512/9486/9486015.png" id="icone" alt="Inserir novo tecido" style="width:25px; height:25px"> Inserir novo tecido</button>
+    </a>
+
+    <table>
+        <tr>
+            <th>INPUT</th>
+            <th>REFERÊNCIA</th>
+            <th>TECIDO</th>
+            <th>COR</th>
+            <th>METRAGEM</th>
+        </tr> 
+        {% for tecido in tecidos %}
+        <tr>
+            <td>{{ tecido.id }}</td>
+            <td>{{ tecido.referencia }}</td>
+            <td>{{ tecido.tipo }}</td>
+            <td>{{ tecido.cor }}</td>
+            <td>{{ tecido.metragem }}m</td>
+            <td style="width:15px"><a href="{% url 'editar' tecido.id %}"><img src="https://cdn-icons-png.flaticon.com/512/6269/6269505.png" id="icone" alt="Editar"></a></td>
+            <td style="width:15px"><a href="{% url 'excluir' tecido.id %}"><img src="https://cdn-icons-png.flaticon.com/512/7778/7778893.png" id="icone" alt="Excluir"></a></td>
+        </tr>
+        {% endfor %}   
+    </table>
+
+    <div id="form_container">
+        <p>Filtrar por: </p>
+
+        <form method="get" action="{% url 'tecidos_filtrados_referencia' %}" style="float:left;">
+            <button type="submit">Referência</button>
+            {{ form.as_p }}
+        </form>
+
+        <form method="get" action="{% url 'tecidos_filtrados_tipo' %}" style="float:left;">
+            <button type="submit">Tecido</button>
+            {{ form.as_p }}
+        </form>
+
+        <form method="get" action="{% url 'tecidos_filtrados_cor' %}" style="float:left;">
+            <button type="submit">Cor</button>
+            {{ form.as_p }}
+        </form>
+        <br>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a href="{% url 'limpar_filtros' %}" style="margin-left: 80px">
+        Limpar filtros
+    </a>
+
+</body>
+</html>
