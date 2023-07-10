@@ -15,7 +15,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 ### Iniciando o servidor
 #### Clone este repositório
 
-git clone <https://github.com/malubritoc/lop_unid2>
+git clone <https://github.com/malubritoc/lop_unidade2>
 
 
 #### Acesse a pasta do projeto no terminal/cmd
